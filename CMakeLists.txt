@@ -41,11 +41,11 @@ find_package(OpenGL REQUIRED)
 # We find all necessary components for a stable X11 setup.
 if (UNIX AND NOT APPLE)
     find_package(X11 REQUIRED)
-endif()
+endif ()
 
 
 # ==============================================================================
-# Dependency Management (GLFW and OpenGL) ✨
+# Dependency Management (GLAD) ✨
 # ==============================================================================
 
 # Build glad.c into a static library
@@ -98,9 +98,7 @@ set(COMMON_CXX_WARNINGS
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
 # Add your executable.
-add_executable(${PROJECT_NAME} main.cpp
-#        dependencies/glad/src/gl.c
-)
+add_executable(${PROJECT_NAME} main.cpp)
 
 # Link the required libraries to your executable.
 # Modern CMake uses the targets provided by the find_package commands.
@@ -119,4 +117,4 @@ if (UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${X11_LIBRARIES})
     # Add other common dependencies often needed by GLFW on Linux
     target_link_libraries(${PROJECT_NAME} PRIVATE pthread dl rt m)
-endif()
+endif ()
